@@ -1,0 +1,318 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "deps: install",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"install",
+				"--no-audit",
+				"--no-fund"
+			],
+			"group": "build"
+		},
+		{
+			"label": "test: unit",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"test"
+			],
+			"group": "test"
+		},
+		{
+			"label": "build: bundle",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"group": "build"
+		},
+		{
+			"label": "build dist (verificacao)",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"group": "build"
+		},
+		{
+			"label": "serve: preview",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"preview",
+				"--",
+				"--host",
+				"127.0.0.1",
+				"--port",
+				"4173",
+				"--strictPort"
+			],
+			"isBackground": true
+		},
+		{
+			"label": "diag: explosion",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"scripts/check-explosion.mjs"
+			],
+			"group": "test"
+		},
+		{
+			"label": "diag: explosion 2",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"scripts/check-explosion.mjs"
+			],
+			"group": "test"
+		},
+		{
+			"label": "build dist (v2)",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"group": "build"
+		},
+		{
+			"label": "build dist (v3)",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"group": "build"
+		},
+		{
+			"label": "file: replace camera rig",
+			"type": "shell",
+			"command": "mv",
+			"args": [
+				"-f",
+				"src/scene/CameraRig.next.js",
+				"src/scene/CameraRig.js"
+			],
+			"group": "build"
+		},
+		{
+			"label": "test: v2",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"test"
+			],
+			"group": "test"
+		},
+		{
+			"label": "build dist (v4)",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"group": "build"
+		},
+		{
+			"label": "build dist (v5)",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"group": "build"
+		},
+		{
+			"label": "diag: explosion 3",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"scripts/check-explosion.mjs"
+			],
+			"group": "test"
+		},
+		{
+			"label": "build dist (v6)",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"group": "build"
+		},
+		{
+			"label": "file: replace labels",
+			"type": "shell",
+			"command": "mv",
+			"args": [
+				"-f",
+				"src/interaction/Labels.next.js",
+				"src/interaction/Labels.js"
+			],
+			"group": "build"
+		},
+		{
+			"label": "build dist (v7)",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"group": "build"
+		},
+		{
+			"label": "build dist (v8)",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"group": "build"
+		},
+		{
+			"label": "build dist (v9)",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"group": "build"
+		},
+		{
+			"label": "build dist (v10)",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"group": "build"
+		},
+		{
+			"label": "cleanup: scripts",
+			"type": "shell",
+			"command": "rm",
+			"args": [
+				"-rf",
+				"scripts"
+			],
+			"group": "build"
+		},
+		{
+			"label": "test: final",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"test"
+			],
+			"group": "test"
+		},
+		{
+			"label": "build final",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"group": "build"
+		},
+		{
+			"label": "file: readme",
+			"type": "shell",
+			"command": "mv",
+			"args": [
+				"-f",
+				"README.next.md",
+				"README.md"
+			],
+			"group": "build"
+		},
+		{
+			"label": "file: gitignore",
+			"type": "shell",
+			"command": "mv",
+			"args": [
+				"-f",
+				".gitignore.next",
+				".gitignore"
+			],
+			"group": "build"
+		},
+		{
+			"label": "chmod scripts",
+			"type": "shell",
+			"command": "chmod",
+			"args": [
+				"+x",
+				"start.sh",
+				"stop.sh"
+			],
+			"group": "build"
+		},
+		{
+			"label": "test: start.sh",
+			"type": "shell",
+			"command": "PORT=4180 ./start.sh",
+			"args": [],
+			"group": "build"
+		},
+		{
+			"label": "check: http",
+			"type": "shell",
+			"command": "curl",
+			"args": [
+				"-s",
+				"-o",
+				"/dev/null",
+				"-w",
+				"%{http_code}\\n",
+				"http://127.0.0.1:4180/"
+			],
+			"group": "test"
+		},
+		{
+			"label": "diag: server",
+			"type": "shell",
+			"command": "cat .server.log; echo '---'; cat .server.pid; ps -p $(cat .server.pid) -o pid,cmd=",
+			"args": [],
+			"group": "test"
+		},
+		{
+			"label": "test: start/stop end-to-end",
+			"type": "shell",
+			"command": "PORT=4181 ./start.sh && sleep 3 && curl -s -o /dev/null -w 'HTTP %{http_code}' http://127.0.0.1:4181/ && echo '' && ./stop.sh",
+			"args": [],
+			"group": "test"
+		},
+		{
+			"label": "test: entrega",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"test"
+			],
+			"group": "test"
+		}
+	]
+}

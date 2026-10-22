@@ -1,0 +1,281 @@
+# Planejamento: Simulação 3D de um motor elétrico CC com escovas
+
+## 1. Papel do agente
+
+Atue como um engenheiro de software sênior, especialista em computação gráfica 3D para a Web, Three.js, JavaScript, HTML5, CSS3, animações físicas e desenvolvimento de aplicações educacionais interativas.
+
+Sua tarefa é planejar a implementação de uma aplicação Web que apresente uma simulação visual tridimensional de um motor elétrico de corrente contínua (CC) com escovas, demonstrando seu funcionamento e, posteriormente, sua estrutura interna por meio de uma vista explodida.
+
+O desenvolvimento será realizado no Visual Studio Code, com auxílio do GitHub Copilot Chat e de agentes de IA.
+
+**Nesta etapa, produza somente o planejamento. Não implemente o código ainda.**
+
+## 2. Objetivo da aplicação
+
+Desenvolver uma experiência visual didática, tecnicamente coerente e visualmente atraente, executada diretamente em um navegador Web moderno, sem necessidade de instalar um aplicativo adicional.
+
+A aplicação deverá apresentar duas cenas principais:
+
+1. **Motor em funcionamento:** um motor elétrico CC com escovas, completamente montado, girando em torno do seu eixo.
+2. **Vista explodida:** após cinco rotações completas, o motor desacelera, para e tem suas peças separadas progressivamente, revelando seus componentes internos e externos.
+
+A apresentação deverá transmitir a sensação de estar observando um modelo tridimensional de engenharia, com geometria, materiais, iluminação, sombras e movimentos convincentes.
+
+## 3. Tecnologias
+
+Avalie e proponha uma arquitetura utilizando, preferencialmente:
+
+- HTML5 para a estrutura da aplicação.
+- CSS3 para o layout, os controles, os painéis informativos e as transições da interface.
+- JavaScript moderno (ES Modules) para a lógica da aplicação.
+- Three.js para a renderização 3D, a construção das geometrias e a animação dos componentes.
+- WebGL, por meio do Three.js, para a renderização acelerada por hardware.
+- Vite, caso seja conveniente para o desenvolvimento local, a organização dos módulos e a execução do projeto.
+- OrbitControls, ou alternativa equivalente, para permitir a inspeção interativa do modelo 3D.
+
+Evite dependências desnecessárias. Priorize bibliotecas gratuitas e de código aberto, compatibilidade com navegadores modernos e facilidade de execução e manutenção no VS Code.
+
+Se considerar necessário utilizar modelos 3D externos, texturas, arquivos GLTF/GLB ou ferramentas de modelagem, explique as vantagens, as limitações e as licenças envolvidas. Prefira inicialmente construir o motor proceduralmente com geometrias do Three.js, reduzindo a dependência de arquivos externos.
+
+## 4. Modelo tridimensional do motor
+
+Planeje um modelo tridimensional reconhecível de um motor elétrico CC com escovas, com proporções plausíveis e componentes mecanicamente coerentes.
+
+O modelo deverá contemplar, sempre que viável:
+
+### Componentes externos
+- Carcaça cilíndrica metálica.
+- Tampa dianteira e tampa traseira.
+- Eixo de saída.
+- Mancais ou buchas de apoio do eixo.
+- Parafusos de fixação.
+- Terminais elétricos de alimentação.
+- Suporte ou região de fixação do motor.
+- Aberturas ou detalhes construtivos que permitam compreender sua estrutura.
+
+### Componentes internos
+- Estator, representado por ímãs permanentes ou por uma solução construtiva coerente com um motor CC de ímãs permanentes.
+- Rotor ou armadura.
+- Núcleo ferromagnético laminado, representado visualmente.
+- Enrolamentos de cobre.
+- Comutador segmentado.
+- Escovas de contato elétrico.
+- Molas ou mecanismos de pressão das escovas, quando representáveis.
+- Eixo central.
+- Buchas ou rolamentos.
+- Elementos de isolamento e suportes internos relevantes.
+
+Não represente o motor como uma coleção arbitrária de peças. Defina uma montagem coerente, com relações espaciais corretas entre o eixo, o rotor, o estator, o comutador, as escovas e os mancais.
+
+Explique no planejamento quais detalhes serão geometricamente modelados, quais poderão ser simplificados e quais exigiriam um modelo CAD mais preciso.
+
+## 5. Primeira cena: motor em funcionamento
+
+A primeira cena deverá apresentar o motor montado, com aparência tridimensional realista e visualização suficiente para identificar sua forma externa.
+
+O comportamento esperado é:
+
+1. A aplicação inicia com o motor montado e centralizado na cena.
+2. O usuário visualiza a carcaça, o eixo e os demais elementos externos.
+3. O rotor e o eixo giram em conjunto, enquanto a carcaça e os elementos estacionários permanecem imóveis.
+4. O movimento deverá ser suave, com velocidade angular controlada e independente da taxa de atualização do monitor.
+5. A animação deverá completar exatamente cinco rotações do eixo, equivalentes a 1.800 graus.
+6. Após a quinta rotação, o motor desacelera de maneira suave até parar.
+7. A aplicação inicia automaticamente a transição para a vista explodida.
+
+Implemente o planejamento da animação utilizando tempo decorrido, como `deltaTime`, e não incrementos fixos por quadro, para reduzir a dependência da taxa de quadros por segundo.
+
+Defina explicitamente como serão contabilizadas as cinco rotações completas, evitando erros de arredondamento ou ultrapassagem do ângulo final.
+
+Se a desaceleração ocorrer após a conclusão das cinco rotações, ela deverá ser integrada ao cálculo do movimento de modo que o eixo não ultrapasse o total de cinco voltas. Caso seja necessário, proponha um perfil de velocidade angular com aceleração, velocidade constante e desaceleração, mantendo o total exato de rotações.
+
+Não simule movimentos internos incompatíveis com a mecânica do motor. O rotor e o eixo devem compartilhar o mesmo movimento angular, enquanto o comutador acompanha o rotor e as escovas permanecem estacionárias em relação à carcaça.
+
+## 6. Segunda cena: vista explodida
+
+Ao terminar a animação, a aplicação deverá apresentar uma transição visual elegante para uma vista explodida do motor.
+
+O objetivo é mostrar como o motor é constituído, separando espacialmente os componentes para permitir a inspeção individual de cada peça.
+
+Planeje a separação progressiva dos seguintes conjuntos, conforme a viabilidade geométrica:
+
+- Eixo e elementos de saída.
+- Tampa dianteira.
+- Tampa traseira.
+- Parafusos e elementos de fixação.
+- Carcaça cilíndrica.
+- Estator e ímãs permanentes.
+- Rotor e núcleo laminado.
+- Enrolamentos de cobre.
+- Comutador.
+- Escovas e seus suportes.
+- Mancais ou rolamentos.
+- Terminais elétricos.
+
+Os componentes devem se deslocar em direções adequadas à sua posição e função mecânica. A distribuição final deve formar uma composição tridimensional organizada, sem sobreposição excessiva ou perda de peças fora do campo de visão.
+
+Quando apropriado, utilize deslocamentos predominantemente ao longo do eixo do motor para as tampas, o eixo, os mancais e a carcaça, e deslocamentos radiais para os componentes que envolvem ou circundam o rotor.
+
+Não desmonte arbitrariamente peças que precisam permanecer solidárias. Por exemplo, os enrolamentos devem acompanhar o rotor, o comutador deve acompanhar o eixo e os conjuntos de escovas devem permanecer associados aos respectivos suportes.
+
+A vista explodida deverá apresentar:
+
+- Separação gradual das peças.
+- Câmera com enquadramento adaptado ao conjunto expandido.
+- Iluminação adequada para distinguir materiais e geometrias.
+- Possibilidade de rotacionar e aproximar o modelo.
+- Identificação visual dos componentes.
+- Aparência de um diagrama de montagem técnica tridimensional.
+
+Avalie a utilização de linhas-guia, rótulos, números identificadores e legendas para relacionar as peças às suas funções.
+
+## 7. Interface e experiência do usuário
+
+Planeje uma interface simples, responsiva e didática.
+
+A aplicação poderá conter:
+
+- Título e breve descrição do motor.
+- Indicador de estado: aguardando, em funcionamento, desacelerando, desmontando e vista explodida.
+- Indicador de progresso das cinco rotações.
+- Controles de câmera para girar, aproximar e afastar.
+- Botão para reiniciar a demonstração.
+- Botão para pausar e continuar, se compatível com o controle preciso da animação.
+- Controle para alternar entre vista montada e vista explodida após a demonstração.
+- Legenda com os nomes e as funções dos componentes.
+- Informações didáticas exibidas quando uma peça for selecionada.
+- Opção de retornar à montagem original.
+
+Os controles não deverão permitir que a interação do usuário provoque estados inconsistentes na sequência da animação.
+
+Defina como a aplicação se comportará quando o usuário reiniciar a simulação durante a desmontagem ou alternar a câmera durante o funcionamento.
+
+## 8. Organização da arquitetura
+
+Proponha uma estrutura modular de projeto, com responsabilidades claramente separadas.
+
+Considere módulos para:
+
+- Inicialização da aplicação e configuração da cena.
+- Construção geométrica do motor.
+- Montagem e hierarquia dos componentes.
+- Materiais e iluminação.
+- Animação do rotor e do eixo.
+- Máquina de estados da demonstração.
+- Sequência de desmontagem e remontagem.
+- Câmera e controles de navegação.
+- Interface gráfica e informações didáticas.
+- Identificação e seleção de componentes.
+- Limpeza de recursos e tratamento de erros.
+
+Defina uma máquina de estados explícita para controlar a sequência. Por exemplo:
+
+`INITIALIZED → ASSEMBLED → RUNNING → DECELERATING → EXPLODING → EXPLODED`
+
+Considere também os estados de pausa, reinicialização e remontagem, se necessários.
+
+Evite concentrar toda a lógica em um único arquivo JavaScript. Explique quais responsabilidades deverão pertencer a cada módulo e como eles se comunicarão.
+
+## 9. Requisitos de qualidade
+
+O planejamento deverá considerar:
+
+- Compatibilidade com navegadores modernos.
+- Execução local no VS Code.
+- Uso de ES Modules.
+- Código organizado, legível e documentado.
+- Geometria coerente e proporções visualmente plausíveis.
+- Separação clara entre componentes móveis e estacionários.
+- Controle determinístico da sequência de animação.
+- Tratamento de redimensionamento da janela.
+- Gerenciamento adequado dos recursos gráficos.
+- Prevenção de vazamentos de memória durante reinicializações.
+- Interface responsiva.
+- Desempenho adequado em computadores convencionais.
+- Ausência de dependências comerciais obrigatórias.
+- Possibilidade de ampliar o projeto posteriormente.
+
+Considere acessibilidade básica, contraste adequado, legibilidade das legendas e uma alternativa de navegação caso o usuário não possa utilizar o mouse.
+
+## 10. Estratégia de implementação
+
+Divida o trabalho em etapas incrementais e verificáveis.
+
+Uma sequência possível é:
+
+1. Preparação do ambiente e estrutura inicial do projeto.
+2. Configuração da cena 3D, câmera, iluminação e controles.
+3. Construção geométrica da carcaça e do eixo.
+4. Construção dos componentes internos e montagem do motor.
+5. Implementação da hierarquia de movimento do rotor, eixo e comutador.
+6. Implementação e validação das cinco rotações.
+7. Desenvolvimento da sequência de desaceleração e desmontagem.
+8. Implementação da identificação e das informações didáticas.
+9. Desenvolvimento dos controles da interface.
+10. Testes de integração, desempenho, responsividade e correção mecânica visual.
+11. Documentação para instalação, execução e manutenção.
+
+Para cada etapa, especifique:
+
+- Objetivo.
+- Arquivos a criar ou modificar.
+- Dependências.
+- Tarefas técnicas.
+- Critérios objetivos de aceitação.
+- Testes necessários.
+- Riscos e dependências de outras etapas.
+
+Ajuste essa sequência caso identifique uma ordem mais eficiente.
+
+## 11. Estratégia de testes
+
+Defina como verificar, no mínimo:
+
+- Se o modelo é renderizado corretamente.
+- Se os componentes estão montados em posições coerentes.
+- Se somente as peças móveis giram durante o funcionamento.
+- Se o eixo completa exatamente cinco voltas.
+- Se a animação permanece correta em diferentes taxas de quadros.
+- Se a desmontagem ocorre somente após o término do movimento.
+- Se as peças permanecem identificáveis e dentro do enquadramento.
+- Se os controles funcionam durante todos os estados permitidos.
+- Se a reinicialização restaura a montagem e os parâmetros iniciais.
+- Se a aplicação continua funcionando após redimensionamento da janela.
+- Se não há erros relevantes no console do navegador.
+
+Proponha testes automatizados quando forem úteis e testes visuais manuais para validar a qualidade da apresentação 3D.
+
+## 12. Formato da resposta de planejamento
+
+Apresente um plano técnico detalhado, organizado nas seguintes seções:
+
+1. Visão geral da solução.
+2. Tecnologias escolhidas e justificativas.
+3. Descrição do modelo físico e suas simplificações.
+4. Arquitetura da aplicação.
+5. Estrutura de diretórios e arquivos.
+6. Hierarquia 3D e relações mecânicas entre os componentes.
+7. Estratégia matemática para as cinco rotações.
+8. Estratégia de desaceleração e desmontagem.
+9. Interface e experiência do usuário.
+10. Plano de implementação por etapas.
+11. Critérios de aceitação e estratégia de testes.
+12. Riscos técnicos e alternativas.
+13. Critérios para considerar o projeto concluído.
+
+Inclua pseudocódigo quando ajudar a explicar a lógica, mas não produza a implementação completa nesta fase.
+
+Ao final, apresente uma lista priorizada de tarefas pronta para ser utilizada por um agente de desenvolvimento no GitHub Copilot Chat.
+
+## 13. Restrições importantes
+
+- Não comece a implementar o projeto antes de concluir o planejamento.
+- Não crie arquivos nem modifique o repositório nesta etapa.
+- Não presuma que já existem arquivos ou dependências no projeto.
+- Não utilize modelos 3D externos sem avaliar sua licença e disponibilidade.
+- Não apresente como fisicamente preciso aquilo que for apenas uma representação visual simplificada.
+- Não considere a animação concluída apenas porque o eixo girou aproximadamente cinco vezes: o total deverá ser controlado matematicamente.
+- Não trate a vista explodida como uma simples dispersão aleatória das peças.
+- Priorize clareza didática, coerência mecânica, qualidade visual e manutenção do código.
+
+**Resultado esperado:** um plano de implementação suficientemente detalhado para que, em uma etapa posterior, um agente de desenvolvimento possa construir a aplicação de forma incremental, com arquitetura consistente, testes verificáveis e uma demonstração 3D de qualidade.

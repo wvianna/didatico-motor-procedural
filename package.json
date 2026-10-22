@@ -1,0 +1,21 @@
+{
+  "name": "didatico-motor",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Simulacao 3D didatica de um motor eletrico de corrente continua com escovas (Three.js).",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "three": ">=0.170.0"
+  },
+  "devDependencies": {
+    "vite": ">=6.0.0",
+    "vitest": ">=2.1.0"
+  }
+}

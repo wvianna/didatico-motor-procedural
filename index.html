@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Simulação 3D didática de um motor elétrico de corrente contínua com escovas: funcionamento e vista explodida."
+    />
+    <title>Motor CC com escovas — simulação 3D</title>
+  </head>
+  <body>
+    <div id="app">
+      <div id="viewport" class="viewport"></div>
+
+      <header class="panel header">
+        <h1>Motor elétrico CC com escovas</h1>
+        <p class="subtitle">Funcionamento em cinco voltas e vista explodida</p>
+      </header>
+
+      <section class="panel status" aria-live="polite" aria-atomic="true">
+        <span id="state-pill" class="pill" data-state="INITIALIZED">Inicializando</span>
+        <p id="state-hint" class="hint">Preparando a cena 3D…</p>
+      </section>
+
+      <section class="panel turns" aria-label="Progresso das cinco rotações do eixo">
+        <div class="turns-head">
+          <span class="turns-label">Voltas do eixo</span>
+          <span id="turns-value" class="turns-value">0,00 / 5,00</span>
+        </div>
+        <div
+          id="turns-bar"
+          class="turns-bar"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="5"
+          aria-valuenow="0"
+          aria-valuetext="0 de 5 voltas"
+        >
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </section>
+
+      <nav class="panel controls" aria-label="Controles da demonstração">
+        <button id="btn-play" type="button" class="btn btn-primary" disabled>Reproduzir</button>
+        <button id="btn-pause" type="button" class="btn" aria-pressed="false" disabled>
+          Pausar
+        </button>
+        <button id="btn-toggle" type="button" class="btn" disabled>Desmontar</button>
+        <button
+          id="btn-descriptions"
+          type="button"
+          class="btn"
+          aria-pressed="true"
+          aria-controls="side"
+          title="Mostrar ou ocultar as descrições dos componentes"
+        >
+          Descrições
+        </button>
+        <button id="btn-reset" type="button" class="btn" disabled>Reiniciar</button>
+      </nav>
+
+      <aside class="panel side" id="side">
+        <section class="side-block">
+          <h2>Componentes</h2>
+          <ol id="legend-list" class="legend-list"></ol>
+        </section>
+        <section class="side-block info" id="info">
+          <h2 id="info-title">Selecione uma peça</h2>
+          <p id="info-summary" class="info-summary">
+            Clique em um componente do modelo ou use a lista acima para ver sua função.
+          </p>
+          <dl class="info-meta" id="info-meta" hidden>
+            <div><dt>Material</dt><dd id="info-material">—</dd></div>
+            <div><dt>O que observar</dt><dd id="info-observe">—</dd></div>
+          </dl>
+        </section>
+      </aside>
+
+      <p class="panel hints">
+        <kbd>arraste</kbd> girar <span aria-hidden="true">·</span>
+        <kbd>roda</kbd> aproximar <span aria-hidden="true">·</span>
+        <kbd>Espaço</kbd> pausar <span aria-hidden="true">·</span>
+        <kbd>E</kbd> montar/desmontar <span aria-hidden="true">·</span>
+        <kbd>D</kbd> descrições <span aria-hidden="true">·</span>
+        <kbd>R</kbd> reiniciar
+      </p>
+
+      <div id="fatal" class="fatal" hidden role="alert">
+        <div class="fatal-card">
+          <h2 id="fatal-title">Não foi possível iniciar a visualização</h2>
+          <p id="fatal-body"></p>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
